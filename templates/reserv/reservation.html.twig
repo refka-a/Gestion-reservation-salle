@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Daschboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <style>
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table  td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table  tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <ul class="nav navbar-nav">
+    <li><a href="/admin/users">Utilisateurs</a></li>
+    <li><a href="/admin/salle">Salles</a></li>
+    <li><a href="/admin/reservation">Réservation</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+  
+</nav>
+{% if booking is not empty %}
+<table class="table">
+  <thead>
+    <tr>
+      
+     
+     
+      <th scope="col">Salle réservé</th>
+       <th scope="col">Réservé par</th>
+
+      <th scope="col">Date de début</th>
+      <th scope="col">Date fin</th>
+      
+<th scope="col">Delete</th>
+      <th scope="col">Éditer</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+  
+  {% for booking in booking %}
+   <tr>
+
+    <td>{{ booking.salle}}</td>
+    <td>{{ booking.user}}</td> 
+    
+   <td>{{ booking.beginAt |  date('Y-m-d H:i')}}</td>
+   
+    <td>{{ booking.endAt |  date('Y-m-d H:i')}}</td>
+
+      <td><a href="delete/{{ booking.id}}">Delete</a></td>
+
+       <td><a href="/admin/reservation/edit/{{ booking.id}}">editer</a></td>
+   
+      
+  {% endfor %}
+  </tbody>
+ 
+</table>
+{% else %}
+  <p>No reservation found.</p>
+{% endif %}
+
+<br/>
+<!-- <a href="/admin/create-reserv">Create New</a> -->
+  </tbody>
+</table>
+</body>
+</html>

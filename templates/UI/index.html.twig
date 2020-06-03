@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#p1").mousedown(function(){
+    alert("detail salle1: 15 place");
+  });
+});
+$(document).ready(function(){
+  $("#p2").mousedown(function(){
+    alert("detail salle2:30 place");
+  });
+});
+$(document).ready(function(){
+  $("#p3").mousedown(function(){
+    alert("detail salle3:20 place");
+  });
+});
+
+</script>
+<style>
+
+#m1{display: block;
+  margin : auto;
+
+}
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+   padding:6px 0 6px 0;
+font:bold 13px Arial;
+background:#f5f5f5;
+color:#555;
+border-radius:2px;
+width:100px;
+border:1px solid #ccc;
+
+}
+#header1 {
+background: #00FF00;
+}
+#header1{
+align: right;
+}
+.btn:hover {background: #eee;}
+
+.salle1 {color: blue;}
+.salle2 {color: blue;}
+.salle3 {color: blue;}
+</style>
+</head>
+<body>
+<div id="header1">
+<button><a id="logout" href="/logout">Logout</a></button>
+<h2 align="center">Bienvenue</h2> </div>
+<div id="m1">
+<button class="btn salle1" id="p1">salle1</button>
+<button class="btn salle2"id="p2">salle2</button>
+<button class="btn salle3" id="p3">salle3</button><br><br>
+</div>
+<a href="{{ path('booking_new') }}">Create new booking</a>
+
+
+{% block body %}
+    {% include '@Calendar/calendar.html' %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            var calendarEl = document.getElementById('calendar-holder');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                defaultView: 'dayGridMonth',
+                editable: true,
+                eventSources: [
+                    {
+                        url: "{{ path('fc_load_events') }}",
+                        method: "POST",
+                        extraParams: {
+                            filters: JSON.stringify({})
+                        },
+                        failure: () => {
+                            // alert("There was an error while fetching FullCalendar!");
+                        },
+                    },
+                ],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
+                timeZone: 'UTC',
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

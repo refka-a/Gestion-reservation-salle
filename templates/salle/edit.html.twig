@@ -1,0 +1,20 @@
+
+<nav class="navbar navbar-inverse">
+  <ul class="nav navbar-nav">
+    <li><a href="/admin/users">Utilisateurs</a></li>
+    <li><a href="/admin/salle">Salles</a></li>
+    <li><a href="/admin/reservation">Réservation</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+  </nav>
+
+
+{% block body %}
+   
+<h1> Update Salle</h1>
+    {{ include('salle/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('salle_index') }}">back to list</a>
+
+    {{ include('salle/_delete_form.html.twig') }}
+{% endblock %}

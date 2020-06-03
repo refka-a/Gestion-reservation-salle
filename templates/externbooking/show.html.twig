@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Externbooking{% endblock %}
+
+{% block body %}
+    <h1>Externbooking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ externbooking.id }}</td>
+            </tr>
+            <tr>
+                <th>RaisonSocial</th>
+                <td>{{ externbooking.raisonSocial }}</td>
+            </tr>
+            <tr>
+                <th>Beneficiary</th>
+                <td>{{ externbooking.idBeneficiary }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ externbooking.objet }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ externbooking.description }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ externbooking.email }}</td>
+            </tr>
+            <tr>
+                <th>NumeroTel</th>
+                <td>{{ externbooking.numeroTel }}</td>
+            </tr>
+            <tr>
+                <th>Timing</th>
+                <td>{{ externbooking.idTiming }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ externbooking.datedebut ? externbooking.datedebut|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ externbooking.datefin ? externbooking.datefin|date('Y-m-d H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Salle</th>
+                <td>{{ externbooking.idSalle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('externbooking_index') }}">back to list</a>
+
+    <a href="{{ path('externbooking_edit', {'id': externbooking.id}) }}">edit</a>
+
+    {{ include('externbooking/_delete_form.html.twig') }}
+{% endblock %}

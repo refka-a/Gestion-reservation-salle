@@ -1,0 +1,45 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+
+
+{{ form_start(form) }}
+
+<table>
+  <tbody>
+    <tr>
+      <th>BeginAt:</th>
+      <td>{{ form_widget(form.beginAt.date.day) }}
+          {{ form_widget(form.beginAt.date.month) }}
+          {{ form_widget(form.beginAt.date.year) }}
+          {{ form_widget(form.beginAt.time.hour) }}
+          {{ form_widget(form.beginAt.time.minute) }}
+    </td>
+    </tr>
+    <tr>
+      <th>endAt:</th>
+       <td>{{ form_widget(form.endAt.date.day) }}
+          {{ form_widget(form.endAt.date.month) }}
+          {{ form_widget(form.endAt.date.year) }}
+          {{ form_widget(form.endAt.time.hour) }}
+          {{ form_widget(form.endAt.time.minute) }}
+    </td>
+    </tr>
+    <tr>
+      <th>Salle:</th>
+      <td>{{ form_widget(form.salle) }}</td>
+    </tr>
+    <tr>
+      <th></th>
+    <td>  <button class="btn">{{ button_label|default('Save') }}</button> </td>
+    </tr>
+  </tbody>
+</table>
+
+{{ form_end(form) }}

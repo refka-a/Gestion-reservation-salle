@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Externbooking{% endblock %}
+
+{% block body %}
+    <h1>Create new Externbooking</h1>
+
+    {{ include('externbooking/_form.html.twig') }}
+
+    <a href="{{ path('externbooking_index') }}">back to list</a>
+{% endblock %}

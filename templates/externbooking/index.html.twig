@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Externbooking index{% endblock %}
+
+{% block body %}
+    <h1>Externbooking index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RaisonSocial</th>
+                <th>Beneficiary</th>
+                <th>Objet</th>
+                <th>Description</th>
+                <th>Email</th>
+                <th>NumeroTel</th>
+                <th>Timing</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Salle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for externbooking in externbookings %}
+            <tr>
+                <td>{{ externbooking.id }}</td>
+                <td>{{ externbooking.raisonSocial }}</td>
+                <td>{{ externbooking.idBeneficiary }}</td>
+                <td>{{ externbooking.objet }}</td>
+                <td>{{ externbooking.description }}</td>
+                <td>{{ externbooking.email }}</td>
+                <td>{{ externbooking.numeroTel }}</td>
+                <td>{{ externbooking.idTiming }}</td>
+                <td>{{ externbooking.datedebut ? externbooking.datedebut|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ externbooking.datefin ? externbooking.datefin|date('Y-m-d H:i') : '' }}</td>
+                <td>{{ externbooking.idSalle }}</td>
+                <td>
+                    <a href="{{ path('externbooking_show', {'id': externbooking.id}) }}">show</a>
+                    <a href="{{ path('externbooking_edit', {'id': externbooking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('externbooking_new') }}">Create new</a>
+{% endblock %}

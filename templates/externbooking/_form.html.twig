@@ -1,0 +1,95 @@
+<html>
+<head>
+<!-- link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" --> 
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+{{ form_start(form) }}
+
+<table>
+  <tbody>
+    <tr>
+      <th>Raison Social:</th>
+      <td>{{ form_widget(form.raisonSocial) }}</td>
+    </tr>
+    <tr>
+      <th>Beneficiary:</th>
+      <td>{{ form_widget(form.idBeneficiary) }}</td>
+    </tr>
+   <tr>
+      <th>Objet:</th>
+      <td>{{ form_widget(form.objet, {'attr': {'class': 'hidden'}}) }}</td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td>{{ form_widget(form.description) }}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{ form_widget(form.email) }}</td>
+    </tr>
+    <tr>
+      <th>Numero Tel:</th>
+      <td>{{ form_widget(form.numeroTel) }}</td>
+    </tr>
+     <tr>
+      <th>Timing:</th>
+      <td>{{ form_widget(form.idTiming, {'attr': {'class': 'form-control idTiming' }}) }}</td>
+    </tr>
+    <tr>
+      <th>Hours:</th>
+      <td class="hidden">{{ form_widget(form.idHours, { 'attr': {'class': 'hidden'} }) }}</td>
+    </tr>
+    <tr>
+      <th>BeginAt:</th>
+      <td>{{ form_widget(form.datedebut.date.day) }}
+          {{ form_widget(form.datedebut.date.month) }}
+          {{ form_widget(form.datedebut.date.year) }}
+          {{ form_widget(form.datedebut.time.hour) }}
+          {{ form_widget(form.datedebut.time.minute) }}
+    </td>
+    </tr>
+    <tr>
+      <th>endAt:</th>
+       <td>{{ form_widget(form.datefin.date.day) }}
+          {{ form_widget(form.datefin.date.month) }}
+          {{ form_widget(form.datefin.date.year) }}
+          {{ form_widget(form.datefin.time.hour) }}
+          {{ form_widget(form.datefin.time.minute) }}
+    </td>
+    </tr>
+    <tr>
+      <th>Salle:</th>
+      <td>{{ form_widget(form.idSalle) }}</td>
+    </tr>
+    <tr>
+      <th></th>
+    <td>  <button class="btn btn-primary">{{ button_label|default('Save') }}</button> </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+{{ form_end(form) }}
+<script>
+$(document).ready(function(){
+  $('.idTiming').change(
+    var idTiming = $(this).val();
+    if (idTiming == 'Par heure'){
+      $('.idHours').show();
+    }else{
+      $('.idHours').hide();
+    }
+  );
+});
+</script>
